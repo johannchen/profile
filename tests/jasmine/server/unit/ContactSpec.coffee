@@ -58,7 +58,14 @@ describe "Contact", ->
       expect(Contacts.update).toHaveBeenCalled()
       expect(Contacts.update.calls.argsFor(0)).toEqual([1, {$addToSet: {stars: 1}}])
 
-  describe "all", ->
+	describe "findOne", ->
+		it "should return one contact by id", ->
+			spyOn(Contacts, "findOne")
+			contact = new Contact(1)
+			contact.findOne()
+			expect(Contacts.findOne.calls.argsFor(0)).toEqual([1])
+			
+	describe "all", ->
     it "should get all contacts order by name", ->
       spyOn(Contacts, "find")
       contact = new Contact()

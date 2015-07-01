@@ -32,7 +32,11 @@ class @Contact
 		if Meteor.userId()
 			Contacts.update @_id,
 				$addToSet: {stars: Meteor.userId()}
-
+	findOne: ->
+		if @_id
+			Contacts.findOne @_id
+		else if @name
+			Contacts.findOne @name
 	all: ->
 		Contacts.find({}, {sort: {name: 1}})
 	search: (term) ->
@@ -41,13 +45,13 @@ class @Contact
 		Contacts.find().count() == 0
 	generateTestContacts: (userId) ->
 		myContacts = [
-			{name: "Adam"}
-			{name: "Esther"}
-			{name: "Jessica"}
+			{name: "Adam", mobile: "123"}
+			{name: "Esther", mobile: "456"}
+			{name: "Jessica", mobile: "789"}
 			{name: "Peter"} 
 			{name: "Brian"} 
 		]
 		for contact in myContacts
-			Contacts.insert(name: contact.name, owner: userId)
+			Contacts.insert(name: contact.name, mobile: contact.mobile, owner: userId)
 
 			

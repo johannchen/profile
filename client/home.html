@@ -3,7 +3,9 @@
 </head>
 <body>
   <p>Welcome to Profile!</p>
+	
 	{{#if currentUser}}
-		<div id="notice">Please wait for the admin approval.</div>
+	<div id="notice">Please wait for the admin approval.</div>
+	{{> contacts}}
 	{{/if}}
 </body>
